@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and validate the five-table S-FFSD-MM publication archive."""
+"""Build and validate the five-table MS-FFSD publication archive."""
 
 from __future__ import annotations
 
@@ -14,10 +14,10 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_DATA_DIR = ROOT / "data"
+DEFAULT_DATA_DIR = ROOT / "input"
 DEFAULT_WORK_DIR = ROOT / "work"
 DEFAULT_OUTPUT_DIR = ROOT / "dataset"
-ARCHIVE_NAME = "S-FFSD-MM.zip"
+ARCHIVE_NAME = "MS-FFSD.zip"
 CJK_PATTERN = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
 
 PUBLIC_TABLE_COLUMNS = {
@@ -194,8 +194,8 @@ def validate_public_tables(tables: dict[str, pd.DataFrame], raw_path: Path) -> N
 
 def write_archive(tables: dict[str, pd.DataFrame], output_dir: Path, work_dir: Path) -> Path:
     resolved_work_dir = work_dir.resolve()
-    stage_dir = (resolved_work_dir / "publication" / "S-FFSD-MM").resolve()
-    if not stage_dir.is_relative_to(resolved_work_dir) or stage_dir.name != "S-FFSD-MM":
+    stage_dir = (resolved_work_dir / "publication" / "MS-FFSD").resolve()
+    if not stage_dir.is_relative_to(resolved_work_dir) or stage_dir.name != "MS-FFSD":
         raise ValueError(f"Unsafe publication staging path: {stage_dir}")
     if stage_dir.exists():
         shutil.rmtree(stage_dir)
