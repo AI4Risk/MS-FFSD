@@ -18,7 +18,7 @@ import sys
 import pandas as pd
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(REPO_ROOT, "data")
+DATA_DIR = os.path.join(REPO_ROOT, "input")
 WORK_DIR = os.path.join(REPO_ROOT, "work")
 IEEE_DIR = os.path.join(DATA_DIR, "ieee")
 
