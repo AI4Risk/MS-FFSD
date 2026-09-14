@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run one module or the complete S-FFSD-MM generation pipeline."""
+"""Run one module or the complete MS-FFSD generation pipeline."""
 
 from __future__ import annotations
 
