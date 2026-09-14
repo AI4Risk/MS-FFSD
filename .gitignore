@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store
+
+# Raw datasets are downloaded locally by each user.
+input/S-FFSD.csv
+input/ieee/*.csv
+
+# Intermediate tables, reports, model responses, and checkpoints.
+work/
