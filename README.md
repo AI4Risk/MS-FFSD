@@ -123,7 +123,7 @@ Each row represents one transaction. `Source` and `Target` are foreign keys to `
 
 | Field | Description |
 | --- | --- |
-| `Datetime` | Synthesized physical date and time following realistic transaction-time rhythms learned from IEEE-CIS. |
+| `Datetime` | Synthesized physical date and time constructed using IEEE-CIS-based temporal priors. |
 | `Source` | Anonymized user identifier. |
 | `Target` | Anonymized merchant identifier. |
 | `Amount` | Original transaction amount from S-FFSD; it is not modified by the generation pipeline. |
