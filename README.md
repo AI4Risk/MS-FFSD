@@ -26,8 +26,6 @@
 </p>
 
 
----
-
 <a id="framework-overview"></a>
 
 ## 🧩 Framework Overview
@@ -50,7 +48,6 @@ We use a multi-agent semantic enrichment framework grounded in transaction behav
 
 Throughout the enrichment process, the original transaction structure and fraud labels are preserved.
 
----
 
 <a id="dataset-overview"></a>
 
@@ -103,7 +100,6 @@ Throughout the enrichment process, the original transaction structure and fraud 
 - `Target` : Foreign key to the merchant table.
 - `Merchant_description` : Textual description of the merchant's business characteristics and behavioral context.
 
----
 
 <a id="label-usage"></a>
 
@@ -130,7 +126,6 @@ The distinction between confirmed normal and unlabeled transactions reflects the
 > [!NOTE]
 > Treating unlabeled samples as normal/background data is a modeling convention for making use of unlabeled data, rather than an assertion that every unlabeled transaction has been explicitly verified as normal.
 
----
 
 <a id="running-framework"></a>
 
@@ -214,7 +209,6 @@ The textual generation stage uses deterministic templates for single-transaction
 dataset/MS-FFSD.zip
 ```
 
----
 
 <a id="acknowledgements"></a>
 
@@ -224,7 +218,6 @@ MS-FFSD is built upon the publicly available S-FFSD dataset. IEEE-CIS Fraud Dete
 
 Please follow the original licenses and terms of use of the corresponding external data sources.
 
-------
 
 <a id="contributing"></a>
 
