@@ -31,7 +31,7 @@
 ## 🧩 Framework Overview
 
 <p align="center">
-  <img src="assets/model.png" width="95%" alt="Multi-agent semantic enrichment framework">
+  <img src="assets/model.png" width="75%" alt="Multi-agent semantic enrichment framework">
 </p>
 
 
@@ -56,7 +56,7 @@ Throughout the enrichment process, the original transaction structure and fraud 
 🚀**Quick Start** : The released MS-FFSD is available at `dataset/MS-FFSD.zip`
 
 <p align="center">
-  <img src="assets/table.png" width="92%" alt="MS-FFSD dataset organization">
+  <img src="assets/table.png" width="75%" alt="MS-FFSD dataset organization">
 </p>
 <p align="center">
   <em>Organization of the five released CSV files in MS-FFSD.</em>
@@ -123,8 +123,7 @@ The distinction between confirmed normal and unlabeled transactions reflects the
 
   Unlabeled samples can be merged into the normal class and treated as normal/background data. This is consistent with the operational setting of financial fraud detection, where confirmed fraud cases constitute the positive class, while the large volume of transactions without confirmed fraud labels is typically used as non-fraud background data.
 
-> [!NOTE]
-> Treating unlabeled samples as normal/background data is a modeling convention for making use of unlabeled data, rather than an assertion that every unlabeled transaction has been explicitly verified as normal.
+> **Note.** Treating unlabeled samples as normal/background data is a modeling convention for making use of unlabeled data, rather than an assertion that every unlabeled transaction has been explicitly verified as normal.
 
 
 <a id="running-framework"></a>
@@ -174,7 +173,7 @@ IEEE-CIS provides temporal references for intraday, weekly, and calendar transac
 
 The repository already includes the statistical reference tables and semantic priors used by the agents during initialization and consistency refinement. 
 
-```
+```text
 initialization/informations/
 consistency_optimization/priors/
 ```
