@@ -1,85 +1,192 @@
 # 🛡️ Behavior-Grounded Semantic Enrichment for Financial Fraud Modeling and Reasoning
+
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.10 or later">
   <img src="https://img.shields.io/badge/Dataset-MS--FFSD-0A7E8C?style=flat-square&logo=databricks&logoColor=white" alt="MS-FFSD Dataset">
-  <img src="https://img.shields.io/badge/Generation-Multimodal-7C3AED?style=flat-square" alt="Multimodal Generation">
+  <img src="https://img.shields.io/badge/Multimodal-Tabular%20%2B%20Text-7C3AED?style=flat-square" alt="Multimodal Dataset">
   <img src="https://img.shields.io/badge/LLM-Enabled-10B981?style=flat-square" alt="LLM Enabled">
 </p>
-
-📌 This repository builds the multimodal MS-FFSD dataset from S-FFSD transactions, local IEEE-CIS reference data, statistical initialization tables, consistency priors, and LLM-generated descriptions.
-
-<p align="center">
-  <a href="#-structure">📁 Structure</a> ·
-  <a href="#️-requirements">⚙️ Requirements</a> ·
-  <a href="#-inputs">📥 Inputs</a> ·
-  <a href="#️-run">▶️ Run</a> ·
-  <a href="#-output">📦 Output</a> ·
-  <a href="#-transactioncsv">💳 Transactions</a> ·
-  <a href="#-usercsv">👤 Users</a> ·
-  <a href="#-merchantcsv">🏪 Merchants</a> ·
-  <a href="#-description-tables">💬 Descriptions</a>
+<p>
+  We propose a multi-agent semantic enrichment framework that generates interpretable financial semantics grounded in transaction behavior through specialized agents and collaborative refinement.
+    <br>
+  We newly contribute a valuable multimodal financial fraud dataset, MS-FFSD, enriched with structured semantics and textual semantics while preserving real-data-grounded transaction behavior.
 </p>
 
-## 📁 Structure
 
-```text
-input/
-  S-FFSD.csv                         Raw S-FFSD transaction table
-  ieee/                              Local-only IEEE-CIS input files
-dataset/
-  MS-FFSD.zip                        Final five-table release
-timestamp_synthesis/                 Temporal Agent: timestamp synthesis
-initialization/                      User Agent & Merchant Agent: user, location, and merchant initialization
-consistency_optimization/
-  code/                              Consistency Agent: alternating consistency optimization
-  priors/                            Four priors used by Module 3
-long_text_generation/                Textual Agent: profile construction and description generation
-work/                                Generated intermediates, checkpoints, and reports
-publish_dataset.py                   Final schema conversion, validation, and packaging
-run_pipeline.py                      One-command entry point for every module
-```
+<p align="center">
+  This repository provides the complete semantic enrichment framework and the released MS-FFSD dataset.
+</p>
+<p align="center">
+  <a href="#framework-overview">🧩 Framework</a> ·
+  <a href="#dataset-overview">🗂️ Dataset</a> ·
+  <a href="#label-usage">🏷️ Labels</a> ·
+  <a href="#running-framework">🔧 Run</a> ·
+  <a href="#acknowledgements">🙏 Acknowledgements</a> ·
+  <a href="#contributing">🤝 Contributing</a>
+</p>
 
-`work/`, the S-FFSD CSV and the IEEE-CIS CSV files are excluded from version control. 
 
-## ⚙️ Requirements
+---
+
+<a id="framework-overview"></a>
+
+## 🧩 Framework Overview
+
+<p align="center">
+  <img src="assets/model.png" width="95%" alt="Multi-agent semantic enrichment framework">
+</p>
+
+
+<p align="center">
+  <em>Overview of the multi-agent semantic enrichment framework.</em>
+</p>
+
+
+We use a multi-agent semantic enrichment framework grounded in transaction behavior. 
+
+- The Temporal Agent, User Agent, and Merchant Agent construct temporal, user, and merchant semantics, respectively.
+- The Consistency Agent iteratively refines cross-entity semantic consistency over observed user–merchant interactions.
+- The Textual Agent then generates entity-level descriptions from the refined structured state.
+
+Throughout the enrichment process, the original transaction structure and fraud labels are preserved.
+
+---
+
+<a id="dataset-overview"></a>
+
+## 🗂️ Dataset Overview
+
+🚀**Quick Start** : The released MS-FFSD is available at `dataset/MS-FFSD.zip`
+
+<p align="center">
+  <img src="assets/table.png" width="92%" alt="MS-FFSD dataset organization">
+</p>
+<p align="center">
+  <em>Organization of the five released CSV files in MS-FFSD.</em>
+</p>
+
+
+💳 *transaction.csv*
+
+- `Datetime` : Synthesized physical date and time constructed using IEEE-CIS-based temporal priors.
+- `Source` : User identifier and foreign key to the user table.
+- `Target` : Merchant identifier and foreign key to the merchant table.
+- `Amount` : Original transaction amount preserved during semantic enrichment.
+- `Location` : Original transaction-location identifier.
+- `Type` : Original transaction-type identifier.
+- `Transaction_province` : Assigned physical province of the transaction.
+- `Labels` : Transaction label indicating normal, fraudulent, or unlabeled status.
+
+👤 *user.csv*
+
+- `Source` : User identifier and primary key.
+- `Province` : Assigned home province of the user.
+- `Gender` : User gender category.
+- `Age_group` : User age-group category.
+- `Education` : User education-level category.
+- `Occupation_industry` : Industry associated with the user's occupation.
+
+🏪 *merchant.csv*
+
+- `Target` : Merchant identifier and primary key.
+- `MCC_level1` : Broad merchant consumption and business category.
+- `MCC_level2` : Fine-grained merchant category within `MCC_level1`.
+- `Merchant_name` : Synthetic English merchant name.
+
+📝 *user_description.csv*
+
+- `Source` : Foreign key to the user table.
+- `User_description` : Textual description of the user's consumption behavior and semantic profile.
+
+🏬 *merchant_description.csv*
+
+- `Target` : Foreign key to the merchant table.
+- `Merchant_description` : Textual description of the merchant's business characteristics and behavioral context.
+
+---
+
+<a id="label-usage"></a>
+
+## 🏷️ Label Usage
+
+MS-FFSD contains three transaction labels:
+
+- `1`: confirmed fraud;
+- `0`: confirmed normal;
+- `2`: unlabeled.
+
+The distinction between confirmed normal and unlabeled transactions reflects the data collection process of the underlying real-world financial data. Fraudulent transactions were labeled after confirmation, while transactions explicitly verified as non-fraudulent were labeled as normal. The remaining transactions were retained as unlabeled.
+
+### 🔄 Using Unlabeled Samples
+
+- **Models or training protocols that can exploit unlabeled samples.**  
+
+  We recommend preserving the unlabeled status. In our graph-based experiments, only confirmed normal and confirmed fraudulent nodes are used as supervised target nodes and are split into training, validation, and test sets. Unlabeled nodes are excluded from the supervised objective, but remain in the graph and participate in message passing, allowing their feature and structural information to contribute to representation learning.
+
+- **Purely supervised models or training protocols that would otherwise leave unlabeled samples unused.**  
+
+  Unlabeled samples can be merged into the normal class and treated as normal/background data. This is consistent with the operational setting of financial fraud detection, where confirmed fraud cases constitute the positive class, while the large volume of transactions without confirmed fraud labels is typically used as non-fraud background data.
+
+> [!NOTE]
+> Treating unlabeled samples as normal/background data is a modeling convention for making use of unlabeled data, rather than an assertion that every unlabeled transaction has been explicitly verified as normal.
+
+---
+
+<a id="running-framework"></a>
+
+## 🔧 Running the Framework
+
+The semantic enrichment framework is implemented in this repository using S-FFSD as the transaction data and IEEE-CIS together with the provided statistical priors as external references. The following instructions describe the environment, required inputs, and commands for running the framework.
+
+### ⚙️ Requirements
 
 - Python 3.10 or later
 - Packages listed in `requirements.txt`
-- An OpenAI-compatible chat-completions endpoint for Module 4
+- An OpenAI-compatible chat-completions endpoint for textual description generation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 📥 Inputs
+### 📥 Inputs
+
+#### S-FFSD
 
 Download `S-FFSD.zip` from the `data` directory of the official [AI4Risk/antifraud](https://github.com/AI4Risk/antifraud) repository. Extract the archive and place the resulting file at:
 
 ```text
-input/S-FFSD.csv
+data/S-FFSD.csv
 ```
 
 The S-FFSD table must contain:
-
 
 ```text
 Time, Source, Target, Amount, Location, Type, Labels
 ```
 
-Download the training data from the official [IEEE-CIS Fraud Detection competition data page](https://www.kaggle.com/competitions/ieee-fraud-detection/data). Place these two downloaded files locally:
+#### IEEE-CIS
+
+Download the training data from the official [IEEE-CIS Fraud Detection competition data page](https://www.kaggle.com/competitions/ieee-fraud-detection/data). Place the downloaded files at:
 
 ```text
-input/ieee/train_transaction.csv
-input/ieee/train_identity.csv
+data/ieee/train_transaction.csv
+data/ieee/train_identity.csv
 ```
 
-IEEE-CIS provides a reference for realistic transaction-time rhythms, including intraday, weekly, and calendar patterns. Module 1 uses these patterns to convert the relative transaction order in S-FFSD into plausible physical datetimes.
+IEEE-CIS provides temporal references for intraday, weekly, and calendar transaction patterns used in timestamp synthesis.
 
-The repository already includes the statistical tables under `initialization/informations/` and the four active consistency priors under `consistency_optimization/priors/`.
+#### External Knowledge Base
 
-## ▶️ Run
+The repository already includes the statistical reference tables and semantic priors used by the agents during initialization and consistency refinement. 
 
-Run commands from the repository root. Each module has one entry command:
+```
+initialization/informations/
+consistency_optimization/priors/
+```
+
+### ▶️ Run
+
+Run commands from the repository root:
 
 ```bash
 python run_pipeline.py timestamp
@@ -94,12 +201,12 @@ The API options can instead be supplied through `LLM_BASE_URL`, `LLM_API_KEY`, a
 Run the complete pipeline with:
 
 ```bash
-python run_pipeline.py all --base-url "$LLM_BASE_URL" --api-key "$LLM_API_KEY" --model "$LLM_MODEL"
+python run_pipeline.py all   --base-url "$LLM_BASE_URL"   --api-key "$LLM_API_KEY"   --model "$LLM_MODEL"
 ```
 
-Module 4 creates single-transaction user descriptions with deterministic templates and calls the LLM only for multi-transaction users and merchants. Interrupted LLM generation resumes from checkpoints in `work/checkpoints/`.
+The textual generation stage uses deterministic templates for single-transaction users and calls the LLM only for multi-transaction users and merchants. Interrupted LLM generation resumes from checkpoints in `work/checkpoints/`.
 
-## 📦 Output
+### 📦 Publishing and Validation
 
 `python run_pipeline.py publish` validates all foreign keys, row counts, required values, transaction ordering, immutable transaction fields, and English-only public text before creating:
 
@@ -107,60 +214,20 @@ Module 4 creates single-transaction user descriptions with deterministic templat
 dataset/MS-FFSD.zip
 ```
 
-The archive contains exactly five CSV files:
+---
 
-| File | Columns |
-| --- | --- |
-| `transaction.csv` | `Datetime`, `Source`, `Target`, `Amount`, `Location`, `Type`, `Labels`, `Transaction_province` |
-| `user.csv` | `Source`, `Province`, `Gender`, `Age_group`, `Education`, `Occupation_industry` |
-| `merchant.csv` | `Target`, `MCC_level1`, `MCC_level2`, `Merchant_name` |
-| `user_description.csv` | `Source`, `User_description` |
-| `merchant_description.csv` | `Target`, `Merchant_description` |
+<a id="acknowledgements"></a>
 
-### 💳 `transaction.csv`
+## 🙏 Acknowledgements
 
-Each row represents one transaction. `Source` and `Target` are foreign keys to `user.csv` and `merchant.csv`.
+MS-FFSD is built upon the publicly available S-FFSD dataset. IEEE-CIS Fraud Detection data are used as an external temporal reference during timestamp synthesis.
 
-| Field | Description |
-| --- | --- |
-| `Datetime` | Synthesized physical date and time constructed using IEEE-CIS-based temporal priors. |
-| `Source` | Anonymized user identifier. |
-| `Target` | Anonymized merchant identifier. |
-| `Amount` | Original transaction amount from S-FFSD; it is not modified by the generation pipeline. |
-| `Location` | Original anonymized transaction-location identifier from S-FFSD. |
-| `Type` | Original anonymized transaction-type identifier from S-FFSD. |
-| `Labels` | Fraud supervision label: `0` for normal, `1` for fraud, and `2` for unlabeled. |
-| `Transaction_province` | Province assigned as the physical location of the transaction. |
+Please follow the original licenses and terms of use of the corresponding external data sources.
 
-### 👤 `user.csv`
+------
 
-Each row contains the structured profile of one user.
+<a id="contributing"></a>
 
-| Field | Description |
-| --- | --- |
-| `Source` | Anonymized user identifier and primary key. |
-| `Province` | User's assigned home province. |
-| `Gender` | User gender category. |
-| `Age_group` | User age-group category. |
-| `Education` | User education-level category. |
-| `Occupation_industry` | Industry associated with the user's occupation. |
+## 🤝 Contributing
 
-### 🏪 `merchant.csv`
-
-Each row contains the structured profile of one merchant.
-
-| Field | Description |
-| --- | --- |
-| `Target` | Anonymized merchant identifier and primary key. |
-| `MCC_level1` | Broad merchant consumption and behavior category. |
-| `MCC_level2` | Fine-grained merchant category within `MCC_level1`. |
-| `Merchant_name` | Synthetic English merchant name. |
-
-### 💬 Description tables
-
-| File and field | Description |
-| --- | --- |
-| `user_description.csv` / `Source` | Foreign key to `user.csv`. |
-| `user_description.csv` / `User_description` | Synthetic English narrative summarizing the user's attributes and transaction behavior. |
-| `merchant_description.csv` / `Target` | Foreign key to `merchant.csv`. |
-| `merchant_description.csv` / `Merchant_description` | Synthetic English narrative describing the merchant's business and customer or transaction profile. |
+Contributions are welcome. We encourage using this framework to semantically enrich financial transaction data and contribute to building more open multimodal financial datasets.
