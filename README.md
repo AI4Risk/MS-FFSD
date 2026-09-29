@@ -22,7 +22,8 @@
   <a href="#label-usage">🏷️ Labels</a> ·
   <a href="#running-framework">🔧 Run</a> ·
   <a href="#acknowledgements">🙏 Acknowledgements</a> ·
-  <a href="#contributing">🤝 Contributing</a>
+  <a href="#contributing">🤝 Contributing</a>· 
+  <a href="#citation">📚 Citation</a>
 </p>
 
 
@@ -223,3 +224,21 @@ Please follow the original licenses and terms of use of the corresponding extern
 ## 🤝 Contributing
 
 Contributions are welcome. We encourage using this framework to semantically enrich financial transaction data and contribute to building more open multimodal financial datasets.
+
+<a id="citation"></a>
+
+## 📚 Citation
+
+If you find this work or the MS-FFSD dataset useful in your research, please consider citing our paper:
+
+```bibtex
+@misc{shao2026behaviorgroundedsemanticenrichmentfinancial,
+  title={Behavior-Grounded Semantic Enrichment for Financial Fraud Modeling and Reasoning},
+  author={Linbo Shao and Huilin He and Yating Lou and Dawei Cheng},
+  year={2026},
+  eprint={2609.34211},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2609.34211}
+}
+```
