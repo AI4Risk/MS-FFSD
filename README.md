@@ -22,7 +22,7 @@
   <a href="#label-usage">🏷️ Labels</a> ·
   <a href="#running-framework">🔧 Run</a> ·
   <a href="#acknowledgements">🙏 Acknowledgements</a> ·
-  <a href="#contributing">🤝 Contributing</a>· 
+  <a href="#contributing">🤝 Contributing</a> · 
   <a href="#citation">📚 Citation</a>
 </p>
 
