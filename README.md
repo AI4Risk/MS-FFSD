@@ -6,16 +6,17 @@
   <img src="https://img.shields.io/badge/Multimodal-Tabular%20%2B%20Text-7C3AED?style=flat-square" alt="Multimodal Dataset">
   <img src="https://img.shields.io/badge/LLM-Enabled-10B981?style=flat-square" alt="LLM Enabled">
 </p>
-<p>
-  We propose a multi-agent semantic enrichment framework that generates interpretable financial semantics grounded in transaction behavior through specialized agents and collaborative refinement.
-    <br>
-  We newly contribute a valuable multimodal financial fraud dataset, MS-FFSD, enriched with structured semantics and textual semantics while preserving real-data-grounded transaction behavior.
-</p>
 
 <p align="center">
   <a href="./">💻 Code</a> &nbsp;·&nbsp;
   <a href="./dataset/">🗂️ Dataset</a> &nbsp;·&nbsp;
   <a href="https://arxiv.org/abs/2609.34211">📄 Paper</a>
+</p>
+
+<p>
+  We propose a multi-agent semantic enrichment framework that generates interpretable financial semantics grounded in transaction behavior through specialized agents and collaborative refinement.
+    <br>
+  We newly contribute a valuable multimodal financial fraud dataset, MS-FFSD, enriched with structured semantics and textual semantics while preserving real-data-grounded transaction behavior.
 </p>
 
 <p align="center">
