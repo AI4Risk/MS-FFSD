@@ -1,4 +1,4 @@
-# 🛡️ Behavior-Grounded Semantic Enrichment for Financial Fraud Modeling and Reasoning
+# 🪄 Behavior-Grounded Semantic Enrichment for Financial Fraud Modeling and Reasoning
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.10 or later">
@@ -8,14 +8,14 @@
 </p>
 
 <p>
-  <a href="./">💻 Code</strong></a> :
+  <a href="./">💻 Code</a> :
   We propose a multi-agent semantic enrichment framework that generates interpretable financial semantics grounded in transaction behavior through specialized agents and collaborative refinement.
   <br><br>
-  <a href="./dataset/">🗂️ Dataset</strong></a> :
+  <a href="./dataset/">📊 Dataset</a> :
   We newly contribute a valuable multimodal financial fraud dataset, MS-FFSD, enriched with structured semantics and textual semantics while preserving real-data-grounded transaction behavior.
   <br><br>
-  <a href="https://arxiv.org/abs/2609.34211">📄 Paper</strong></a> :
-  Our accompanying paper is available on arXiv and is currently under submission.
+  <a href="https://arxiv.org/abs/2609.34211">📄 Paper</a> :
+  Our accompanying paper is available on arXiv and is currently under submission.🎉
 </p>
 
 <p align="center">
