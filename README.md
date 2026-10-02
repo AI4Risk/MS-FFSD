@@ -8,13 +8,13 @@
 </p>
 
 <p>
-  <a href="./"><strong>💻 Code</strong></a> —
+  <a href="./"><strong>💻 Code</strong></a> :
   We propose a multi-agent semantic enrichment framework that generates interpretable financial semantics grounded in transaction behavior through specialized agents and collaborative refinement.
   <br><br>
-  <a href="./dataset/"><strong>🗂️ Dataset</strong></a> —
+  <a href="./dataset/"><strong>🗂️ Dataset</strong></a> :
   We newly contribute a valuable multimodal financial fraud dataset, MS-FFSD, enriched with structured semantics and textual semantics while preserving real-data-grounded transaction behavior.
   <br><br>
-  <a href="https://arxiv.org/abs/2609.34211"><strong>📄 Paper</strong></a> —
+  <a href="https://arxiv.org/abs/2609.34211"><strong>📄 Paper</strong></a> :
   Our accompanying paper is available on arXiv and is currently under submission.
 </p>
 
