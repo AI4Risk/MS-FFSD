@@ -12,6 +12,11 @@
   We newly contribute a valuable multimodal financial fraud dataset, MS-FFSD, enriched with structured semantics and textual semantics while preserving real-data-grounded transaction behavior.
 </p>
 
+<p align="center">
+  <a href="./">💻 Code</a> &nbsp;·&nbsp;
+  <a href="./dataset/">🗂️ Dataset</a> &nbsp;·&nbsp;
+  <a href="https://arxiv.org/abs/2609.34211">📄 Paper</a>
+</p>
 
 <p align="center">
   This repository provides the complete semantic enrichment framework and the released MS-FFSD dataset.
