@@ -237,13 +237,16 @@ Contributions are welcome. We encourage using this framework to semantically enr
 If you find this work or the MS-FFSD dataset useful in your research, please consider citing our paper:
 
 ```bibtex
-@misc{shao2026behaviorgroundedsemanticenrichmentfinancial,
+@article{shao2026behavior,
   title={Behavior-Grounded Semantic Enrichment for Financial Fraud Modeling and Reasoning},
-  author={Linbo Shao and Huilin He and Yating Lou and Dawei Cheng},
-  year={2026},
-  eprint={2609.34211},
-  archivePrefix={arXiv},
-  primaryClass={cs.AI},
-  url={https://arxiv.org/abs/2609.34211}
+  author={Shao, Linbo and He, Huilin and Lou, Yating and Cheng, Dawei},
+  journal={arXiv preprint arXiv:2609.34211},
+  year={2026}
 }
 ```
+
+## All Thanks to Our Contributors :
+
+<a href="https://github.com/AI4Risk/MS-FFSD/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AI4Risk/MS-FFSD" />
+</a>
